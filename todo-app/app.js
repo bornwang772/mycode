@@ -42,7 +42,14 @@
     taskInput.addEventListener('focus', () => {
       setTimeout(() => {
         taskInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 300); // 稍微延迟等键盘完全弹出
+      }, 300);
+    });
+
+    // 点击空白处取消所有 todo 选中态
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.task-item')) {
+        document.querySelectorAll('.task-item.selected').forEach(el => el.classList.remove('selected'));
+      }
     });
   }
 
@@ -91,7 +98,20 @@
     const del = document.createElement('button');
     del.className = 'task-delete';
     del.textContent = 'DEL';
-    del.addEventListener('click', () => removeTask(task.id));
+    del.addEventListener('click', (e) => {
+      e.stopPropagation(); // 阻止冒泡，防止触发 li 的点击
+      removeTask(task.id);
+    });
+
+    // 点击 li 体（非复选框、非删除按钮）切换选中态
+    li.addEventListener('click', (e) => {
+      if (e.target === check || e.target === del) return;
+      // 取消其他已选中的条目
+      document.querySelectorAll('.task-item.selected').forEach(el => {
+        if (el !== li) el.classList.remove('selected');
+      });
+      li.classList.toggle('selected');
+    });
 
     li.appendChild(check);
     li.appendChild(span);
