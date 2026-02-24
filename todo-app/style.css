@@ -44,15 +44,15 @@ body {
   font-family: var(--font-mono);
   background: var(--bg-deep);
   color: var(--text-primary);
-  min-height: 100vh;
-  min-height: 100dvh;
-  /* 动态视口高度：键盘弹出时自动收缩 */
+  height: 100vh;
+  height: 100dvh;
+  /* 键盘弹出时自动收缩 */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
   padding: 16px;
-  /* 四边留同等边距 */
-  overflow-x: hidden;
+  overflow: hidden;
+  /* 禁止 body 自身滚动，内部 taskList 滚动 */
   position: relative;
 }
 
@@ -98,6 +98,10 @@ body {
   box-shadow: var(--glow-md);
   display: flex;
   flex-direction: column;
+  height: 100%;
+  /* 撑满 body 减去 padding 后的高度 */
+  overflow: hidden;
+  /* 防止 clip-path 切角被撑破 */
 }
 
 .console::before {
@@ -344,8 +348,12 @@ body {
 /* --- 任务列表区 --- */
 .task-list-zone {
   flex: 1;
+  /* 占满剩余高度 */
+  min-height: 0;
+  /* flex 子项高度收缩关键 */
+  overflow-y: auto;
+  /* 任务多时内部滚动 */
   padding: 1rem 1.5rem;
-  min-height: 200px;
   position: relative;
 }
 
@@ -597,7 +605,8 @@ body {
 /* --- 响应式 --- */
 @media (max-width: 500px) {
   body {
-    padding: 12px;
+    padding: 10px;
+    /* 手机端稍小边距 */
   }
 
   .console {
