@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="一个科幻风格的待办事项应用 - Sci-Fi To-Do List" />
+  <title>⚡ SCI-TODO // 系统控制台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 背景装饰层 -->
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
+
+  <!-- 主控制台容器 -->
+  <main class="console">
+
+    <!-- 顶部标题栏 -->
+    <header class="console-header">
+      <div class="header-accent-left"></div>
+      <div class="header-content">
+        <span class="sys-tag">SYS://</span>
+        <h1>TASK_CONTROL <span class="blink">▮</span></h1>
+        <p class="subtitle">// 任务管理系统 v2.7.6 · 状态：<span class="status-online">在线</span></p>
+      </div>
+      <div class="header-accent-right"></div>
+    </header>
+
+    <!-- 输入区域 -->
+    <section class="input-zone">
+      <div class="input-wrapper">
+        <span class="prompt-symbol">&gt;_</span>
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="输入新的指令任务..."
+          autocomplete="off"
+        />
+        <button id="addBtn" type="button">
+          <span class="btn-text">EXEC</span>
+          <span class="btn-glow"></span>
+        </button>
+      </div>
+      <div class="input-underline"></div>
+    </section>
+
+    <!-- 统计面板 -->
+    <section class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-label">TOTAL</span>
+        <span class="stat-value" id="totalCount">0</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-label">ACTIVE</span>
+        <span class="stat-value" id="activeCount">0</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-label">DONE</span>
+        <span class="stat-value" id="doneCount">0</span>
+      </div>
+    </section>
+
+    <!-- 任务列表区 -->
+    <section class="task-list-zone">
+      <ul id="taskList"></ul>
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">⬡</div>
+        <p>// 无待执行指令</p>
+        <p class="empty-hint">键入任务并按 EXEC 或 Enter 以录入</p>
+      </div>
+    </section>
+
+    <!-- 底部状态栏 -->
+    <footer class="console-footer">
+      <span class="footer-tag">MEM: <span id="memUsage">0</span> ENTRIES</span>
+      <span class="footer-divider">|</span>
+      <span class="footer-tag">STORAGE: LOCAL</span>
+      <span class="footer-divider">|</span>
+      <span class="footer-tag" id="clockDisplay">--:--:--</span>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
