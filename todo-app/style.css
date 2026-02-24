@@ -243,7 +243,8 @@ body {
   outline: none;
   color: var(--text-primary);
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 16px;
+  /* iOS Safari 强制要求输入框字体至少16px，否则点击会自动放大页面 */
   letter-spacing: 0.5px;
   caret-color: var(--neon-primary);
 }
