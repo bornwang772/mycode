@@ -45,10 +45,13 @@ body {
   background: var(--bg-deep);
   color: var(--text-primary);
   min-height: 100vh;
+  min-height: 100dvh;
+  /* 动态视口高度：键盘弹出时自动收缩 */
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 4vh 0;
+  padding: 16px;
+  /* 四边留同等边距 */
   overflow-x: hidden;
   position: relative;
 }
@@ -86,7 +89,8 @@ body {
   z-index: 1;
   width: 100%;
   max-width: 640px;
-  margin: 2rem 1rem;
+  margin: 0;
+  /* body 已经有 padding，这里不再重复 */
   background: var(--bg-panel);
   border: 1px solid var(--border-line);
   clip-path: polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px,
@@ -593,11 +597,11 @@ body {
 /* --- 响应式 --- */
 @media (max-width: 500px) {
   body {
-    padding: 2vh 0;
+    padding: 12px;
   }
 
   .console {
-    margin: 0 0.5rem;
+    margin: 0;
   }
 
   .console-header h1 {

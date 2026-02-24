@@ -37,6 +37,13 @@
     taskInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !isComposing) handleAdd();
     });
+
+    // 手机端：键盘弹出时将输入框滚动到可见区域，防止被键盘遮挡
+    taskInput.addEventListener('focus', () => {
+      setTimeout(() => {
+        taskInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300); // 稍微延迟等键盘完全弹出
+    });
   }
 
   // --- 添加任务 ---
